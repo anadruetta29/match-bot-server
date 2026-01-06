@@ -1,5 +1,6 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class ChatRequest(BaseModel):
-    message: str
-    session_id: str | None = None
+    session_id: Optional[str] = None
+    option_id: Optional[int] = None

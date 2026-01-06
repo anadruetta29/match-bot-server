@@ -1,7 +1,10 @@
 from pydantic import BaseModel
+from typing import Optional
+from app.domain.dto.question.response.question_res import QuestionResponse
+from app.domain.dto.score.response.score_res import ScoreResponse
 
 class ChatResponse(BaseModel):
-    reply: str
     session_id: str
-    score: int | None = None
-    finished: bool = False
+    question: Optional[QuestionResponse] = None
+    result: Optional[ScoreResponse] = None
+    finished: bool

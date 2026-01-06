@@ -1,0 +1,122 @@
+[
+  {
+    "id": "communication",
+    "topic": "comunicación",
+    "text": "¿Disfrutas pasar tiempo hablando con esta persona?",
+    "options": [
+      {"id": 0, "label": "Sí", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "No", "score": 0}
+    ]
+  },
+  {
+    "id": "comfort",
+    "topic": "comodidad",
+    "text": "¿Te sientes cómodo siendo tú mismo con esta persona?",
+    "options": [
+      {"id": 0, "label": "Sí", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "No", "score": 0}
+    ]
+  },
+  {
+    "id": "values",
+    "topic": "valores",
+    "text": "¿Comparten valores similares?",
+    "options": [
+      {"id": 0, "label": "Sí", "score": 2},
+      {"id": 1, "label": "Algo", "score": 1},
+      {"id": 2, "label": "No", "score": 0}
+    ]
+  },
+  {
+    "id": "interests",
+    "topic": "intereses",
+    "text": "¿Tienen intereses o hobbies en común?",
+    "options": [
+      {"id": 0, "label": "Sí", "score": 2},
+      {"id": 1, "label": "Algunos", "score": 1},
+      {"id": 2, "label": "No", "score": 0}
+    ]
+  },
+  {
+    "id": "trust",
+    "topic": "confianza",
+    "text": "¿Confías en esta persona?",
+    "options": [
+      {"id": 0, "label": "Sí", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "No", "score": 0}
+    ]
+  },
+  {
+    "id": "support",
+    "topic": "apoyo",
+    "text": "¿Sientes que esta persona te apoya?",
+    "options": [
+      {"id": 0, "label": "Sí", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "No", "score": 0}
+    ]
+  },
+  {
+    "id": "fun",
+    "topic": "diversión",
+    "text": "¿Se divierten juntos?",
+    "options": [
+      {"id": 0, "label": "Sí", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "No", "score": 0}
+    ]
+  },
+  {
+    "id": "respect",
+    "topic": "respeto",
+    "text": "¿Sientes que esta persona te respeta?",
+    "options": [
+      {"id": 0, "label": "Sí", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "No", "score": 0}
+    ]
+  },
+  {
+    "id": "conflict_communication",
+    "topic": "comunicación de conflictos",
+    "text": "¿Pueden hablar de conflictos abiertamente?",
+    "options": [
+      {"id": 0, "label": "Sí", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "No", "score": 0}
+    ]
+  },
+  {
+    "id": "commitment",
+    "topic": "compromiso",
+    "text": "¿Sientes que hay compromiso mutuo?",
+    "options": [
+      {"id": 0, "label": "Sí", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "No", "score": 0}
+    ]
+  },
+  {
+    "id": "honesty",
+    "topic": "honestidad",
+    "text": "¿Consideras que esta persona es honesta contigo?",
+    "options": [
+      {"id": 0, "label": "Sí", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "No", "score": 0}
+    ]
+  },
+  {
+    "id": "empathy",
+    "topic": "empatía",
+    "text": "¿Sientes que esta persona entiende tus sentimientos?",
+    "options": [
+      {"id": 0, "label": "Sí", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "No", "score": 0}
+    ]
+  }
+]
