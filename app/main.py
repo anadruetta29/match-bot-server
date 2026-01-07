@@ -1,9 +1,11 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from app.services.chat_service import ChatService
+from app.services.chat_session_state import ChatSessionStateService
 from app.domain.dto.chat.response.chat_session_state_res import ChatSessionResponse
-
+from app.config.exceptions.invalid_option import InvalidOptionError
 app = FastAPI(title="Match Score Bot API")
 chat_service = ChatService()
+chat_session_service = ChatSessionStateService()
 
 @app.websocket("/ws/chat")
 async def websocket_chat(websocket: WebSocket):
@@ -36,8 +38,7 @@ async def websocket_chat(websocket: WebSocket):
                 if option_id == 0:
                     session_state = chat_service.start_session(session_id)
                     started = True
-                    current_question = chat_service.handle_answer(session_state, None)[0]
-                    chat_response = ChatSessionResponse.from_domain(session_state, current_question)
+                    chat_response = ChatSessionResponse.from_domain(session_state)
                     await websocket.send_json(chat_response.to_dict())
                     continue
                 else:
@@ -50,15 +51,23 @@ async def websocket_chat(websocket: WebSocket):
                     await websocket.close()
                     break
 
-            next_question, result, finished = chat_service.handle_answer(session_state, option_id)
+            try:
+                next_question, result, finished = chat_service.handle_answer(session_state, option_id)
+            except InvalidOptionError as e:
+                current_q = chat_session_service.current_question(session_state)
+                chat_response = ChatSessionResponse.from_domain(session_state, current_q)
+                await websocket.send_json({
+                    "error": str(e),
+                    "session": chat_response.to_dict()
+                })
+                continue
+
             chat_response = ChatSessionResponse.from_domain(session_state, next_question)
-            response = {
+            await websocket.send_json({
                 "session": chat_response.to_dict(),
                 "result": result,
                 "finished": finished
-            }
-
-            await websocket.send_json(response)
+            })
 
             if finished:
                 await websocket.close()

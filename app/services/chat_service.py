@@ -6,6 +6,7 @@ from app.domain.entities.chat_session_state import ChatSessionState
 from app.database.repository.session import SessionRepository
 from app.database.repository.answer import AnswerRepository
 from app.services.chat_session_state import ChatSessionStateService
+from app.config.exceptions.invalid_option import InvalidOptionError
 
 import random
 
@@ -36,15 +37,17 @@ class ChatService:
     def handle_answer(self, state: ChatSessionState, option_id: int | None):
         current_question = chat_session_service.current_question(state)
 
-        if current_question and option_id is not None:
-            score = current_question.options[option_id]["score"]
-            answer = Answer(
-                question_id=current_question.id,
-                option_id=option_id,
-                score=score
-            )
-            state.session.add_answer(answer)
-            answer_repository.save(state.session.session_id, answer)
+        if option_id is None or option_id < 0 or option_id >= len(current_question.options):
+            raise InvalidOptionError(option_id)
+
+        score = current_question.options[option_id]["score"]
+        answer = Answer(
+            question_id=current_question.id,
+            option_id=option_id,
+            score=score
+        )
+        state.session.add_answer(answer)
+        answer_repository.save(state.session.session_id, answer)
 
         chat_session_service.advance_step(state)
         finished = state.status == "finished"

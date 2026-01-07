@@ -32,3 +32,6 @@ class ChatSessionResponse:
             "step": self.step,
             "question": self.question
         }
+
+
+
