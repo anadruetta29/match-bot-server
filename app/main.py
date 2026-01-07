@@ -1,5 +1,6 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from app.services.chat_service import ChatService
+from app.domain.dto.chat.response.chat_session_state_res import ChatSessionResponse
 
 app = FastAPI(title="Match Score Bot API")
 chat_service = ChatService()
@@ -7,7 +8,7 @@ chat_service = ChatService()
 @app.websocket("/ws/chat")
 async def websocket_chat(websocket: WebSocket):
     await websocket.accept()
-    session = None
+    session_state = None
     started = False
 
     welcome_message = {
@@ -32,9 +33,13 @@ async def websocket_chat(websocket: WebSocket):
             session_id = data.get("session_id")
 
             if not started:
-                if option_id == 0:  # Sí
-                    session = chat_service.start_session(session_id)
+                if option_id == 0:
+                    session_state = chat_service.start_session(session_id)
                     started = True
+                    current_question = chat_service.handle_answer(session_state, None)[0]
+                    chat_response = ChatSessionResponse.from_domain(session_state, current_question)
+                    await websocket.send_json(chat_response.to_dict())
+                    continue
                 else:
                     await websocket.send_json({
                         "session_id": session_id,
@@ -45,18 +50,19 @@ async def websocket_chat(websocket: WebSocket):
                     await websocket.close()
                     break
 
-            next_question, result, finished = chat_service.handle_answer(session, option_id)
-
-            await websocket.send_json({
-                "session_id": session.session_id,
-                "question": next_question,
+            next_question, result, finished = chat_service.handle_answer(session_state, option_id)
+            chat_response = ChatSessionResponse.from_domain(session_state, next_question)
+            response = {
+                "session": chat_response.to_dict(),
                 "result": result,
                 "finished": finished
-            })
+            }
+
+            await websocket.send_json(response)
 
             if finished:
                 await websocket.close()
                 break
 
     except WebSocketDisconnect:
-        print(f"Cliente desconectado: {session.session_id if session else 'desconocido'}")
+        print(f"Cliente desconectado: {session_state.session.session_id if session_state else 'desconocido'}")

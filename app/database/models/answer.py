@@ -18,4 +18,4 @@ class AnswerModel(Base):
     response_text = Column(Text, nullable=True)
     timestamp = Column(DateTime, default=datetime.utcnow)
 
-    session = relationship("Session", back_populates="answers")
+    session = relationship("SessionModel", back_populates="answers")
