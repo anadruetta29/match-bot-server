@@ -1,25 +1,34 @@
-from app.services.application.session_service import SessionService
-from app.services.application.score_service import ScoreService
-from app.services.application.question_service import QuestionService
-from app.domain.entities.answer import Answer
+from app.services.interfaces.session_interface import SessionServiceInterface
+from app.services.interfaces.question_interface import QuestionServiceInterface
+from app.services.interfaces.score_interface import ScoreServiceInterface
+from app.services.interfaces.chat_session_state_interface import ChatSessionStateServiceInterface
+
 from app.domain.entities.chat_session_state import ChatSessionState
-from app.services.application.chat_session_state import ChatSessionStateService
+from app.domain.entities.answer import Answer
+
 from app.config.exceptions.invalid_option import InvalidOptionError
+
 import random
 
-session_service = SessionService()
-question_service = QuestionService()
-score_service = ScoreService()
-chat_session_service = ChatSessionStateService()
-
 class ChatService:
-    def __init__(self, questions_per_session: int = 10):
+    def __init__(
+        self,
+        session_service: SessionServiceInterface,
+        question_service: QuestionServiceInterface,
+        score_service: ScoreServiceInterface,
+        chat_session_service: ChatSessionStateServiceInterface,
+        questions_per_session: int = 10
+    ):
+        self.session_service = session_service
+        self.question_service = question_service
+        self.score_service = score_service
+        self.chat_session_service = chat_session_service
         self.questions_per_session = questions_per_session
 
     def start_session(self, session_id: str | None) -> ChatSessionState:
-        session = session_service.get_or_create(session_id)
+        session = self.session_service.get_or_create(session_id)
 
-        questions = question_service.load()
+        questions = self.question_service.load()
         selected_questions = random.sample(
             questions,
             k=min(self.questions_per_session, len(questions))
@@ -33,7 +42,7 @@ class ChatService:
         )
 
     def handle_answer(self, state: ChatSessionState, option_id: int | None):
-        current_question = chat_session_service.current_question(state)
+        current_question = self.chat_session_service.current_question(state)
 
         if option_id is None or option_id < 0 or option_id >= len(current_question.options):
             raise InvalidOptionError(option_id)
@@ -46,21 +55,21 @@ class ChatService:
             score=selected_option["score"]
         )
 
-        session_service.add_answer(state.session.session_id, answer)
+        self.session_service.add_answer(state.session.session_id, answer)
 
-        chat_session_service.advance_step(state)
+        self.chat_session_service.advance_step(state)
 
         finished = state.status == "finished"
-        next_question = chat_session_service.current_question(state)
+        next_question = self.chat_session_service.current_question(state)
 
         result = None
         if finished:
-            final_score = score_service.calculate_final_score(
+            final_score = self.score_service.calculate_final_score(
                 state.session.answers,
                 state.questions
             )
 
-            session_service.finish_session(
+            self.session_service.finish_session(
                 state.session.session_id,
                 final_score
             )

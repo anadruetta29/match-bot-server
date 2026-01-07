@@ -11,7 +11,7 @@ class SessionServiceInterface(Protocol):
     def add_answer(self, session_id: str, answer: Answer) -> None:
         ...
 
-    def finish_session(self, session_id: str) -> None:
+    def finish_session(self, session_id: str, final_score: int) -> None:
         ...
 
     def get_score(self, session_id: str) -> Score:
