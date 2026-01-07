@@ -16,8 +16,12 @@ class Session:
         self.finished = finished
 
     def add_answer(self, answer: Answer):
+        if self.finished:
+            raise RuntimeError("Cannot add answers to a finished session")
         self.answers.append(answer)
 
+    def finish(self):
+        self.finished = True
+
     def get_score(self) -> Score:
-        from app.domain.entities.score import Score
         return Score(self.answers)

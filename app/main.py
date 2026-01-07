@@ -7,6 +7,10 @@ app = FastAPI(title="Match Score Bot API")
 chat_service = ChatService()
 chat_session_service = ChatSessionStateService()
 
+@app.get("/")
+def root():
+    return {"status": "Match Score Bot API running"}
+
 @app.websocket("/ws/chat")
 async def websocket_chat(websocket: WebSocket):
     await websocket.accept()

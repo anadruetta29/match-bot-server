@@ -7,7 +7,7 @@ class Chat:
         self,
         session_id: str,
         question: Optional[Question] = None,
-        result: Optional[Score] = None,
+        result: Optional[dict] = None,
         finished: bool = False
     ):
         self.session_id = session_id
