@@ -12,10 +12,3 @@ class ChatServiceInterface(Protocol):
         option_id: Optional[int]
     ) -> Tuple[Optional[Question], Optional[dict], bool]:
         ...
-
-    def process_message(
-            self,
-            data: dict,
-            current_state: ChatSessionState | None
-    ):
-        ...
