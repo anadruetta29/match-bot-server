@@ -3,6 +3,8 @@ from app.services.interfaces.question_interface import QuestionServiceInterface
 from app.services.interfaces.score_interface import ScoreServiceInterface
 from app.services.interfaces.chat_session_state_interface import ChatSessionStateServiceInterface
 
+from app.domain.dto.chat.response.chat_session_state_res import ChatSessionStateResponse
+
 from app.domain.entities.chat_session_state import ChatSessionState
 from app.domain.entities.answer import Answer
 
@@ -77,3 +79,44 @@ class ChatService:
             result = {"score": final_score}
 
         return next_question, result, finished
+
+    def process_message(self, data: dict, current_state: ChatSessionState | None):
+
+        option_id = data.get("option_id")
+        session_id = data.get("session_id")
+
+        if current_state is None:
+            if option_id == 0:
+                new_state = self.start_session(session_id)
+                chat_res = ChatSessionStateResponse.from_domain(new_state)
+                return {
+                    "response": chat_res.to_dict(),
+                    "new_state": new_state,
+                    "should_close": False
+                }
+            else:
+                return {
+                    "response": {"finished": True, "result": {"score": 0}},
+                    "new_state": None,
+                    "should_close": True
+                }
+
+        try:
+            next_q, result, finished = self.handle_answer(current_state, option_id)
+            chat_res = ChatSessionStateResponse.from_domain(current_state, next_q)
+
+            return {
+                "response": {
+                    "session": chat_res.to_dict(),
+                    "result": result,
+                    "finished": finished
+                },
+                "new_state": current_state,
+                "should_close": finished
+            }
+        except InvalidOptionError as e:
+            return {
+                "response": {"error": str(e)},
+                "new_state": current_state,
+                "should_close": False
+            }

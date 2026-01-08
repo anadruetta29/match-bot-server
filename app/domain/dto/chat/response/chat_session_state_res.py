@@ -1,7 +1,7 @@
 from app.domain.entities.chat_session_state import ChatSessionState
 from app.domain.entities.question import Question
 
-class ChatSessionResponse:
+class ChatSessionStateResponse:
     def __init__(self, session_id: str, status: str, step: int, question: dict | None):
         self.session_id = session_id
         self.status = status
