@@ -1,0 +1,69 @@
+@startuml
+title: Matchbot – Domain class
+
+    class Session {
+        - session_id: str
+        - user_id: Optional[str]
+        - answers: List[Answer]
+        - finished: bool
+        - add_answer(answer: Answer)
+        - finish()
+        - get_score(): Score
+
+        + add_answer(): (answer: Answer)
+        + finish(): bool
+        + get_score(): (score: Score)
+    }
+
+    class Answer {
+        - question_id: str
+        - option_id: int
+        - score: int
+
+    }
+
+    class Score {
+        - answers: List[Answer]
+        - total_score: int
+
+    }
+
+    class Question {
+        - id: str
+        - text: str
+        - topic: str
+        - options: List[Option]
+    }
+
+    class Option {
+        - id: int
+        - label: str
+    }
+
+    class Chat {
+        - session_id: str
+        - question: Question
+        - result: dict
+        - finished: bool
+    }
+
+    class ChatSessionState {
+        - session: Session
+        - questions: List[Question]
+        - status: str
+        - step: int
+    }
+
+    Session "1" o-- "*" Answer : contains
+    Session --> Score : calculates
+    Score --> Answer : uses
+
+    Question "1" o-- "*" Option : has
+    Answer --> Question : refers to
+
+    ChatSessionState --> Session : holds
+    ChatSessionState --> Question : manages
+
+    Chat --> Question : shows
+
+@enduml

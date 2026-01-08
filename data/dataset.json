@@ -1,7 +1,7 @@
 [
   {
     "id": "communication",
-    "topic": "comunicación",
+    "topic": "comunicacion",
     "text": "¿Disfrutas pasar tiempo hablando con esta persona?",
     "options": [
       {"id": 0, "label": "Sí", "score": 2},
@@ -61,7 +61,7 @@
   },
   {
     "id": "fun",
-    "topic": "diversión",
+    "topic": "diversion",
     "text": "¿Se divierten juntos?",
     "options": [
       {"id": 0, "label": "Sí", "score": 2},
@@ -81,7 +81,7 @@
   },
   {
     "id": "conflict_communication",
-    "topic": "comunicación de conflictos",
+    "topic": "comunicacion_de_conflictos",
     "text": "¿Pueden hablar de conflictos abiertamente?",
     "options": [
       {"id": 0, "label": "Sí", "score": 2},
@@ -111,12 +111,372 @@
   },
   {
     "id": "empathy",
-    "topic": "empatía",
+    "topic": "empatia",
     "text": "¿Sientes que esta persona entiende tus sentimientos?",
     "options": [
       {"id": 0, "label": "Sí", "score": 2},
       {"id": 1, "label": "A veces", "score": 1},
       {"id": 2, "label": "No", "score": 0}
+    ]
+  },
+  {
+    "id": "comm_active_listening",
+    "topic": "comunicacion",
+    "text": "Cuando hablas de algo importante, ¿sientes que realmente te escucha sin interrumpir?",
+    "options": [
+      {"id": 0, "label": "Siempre", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "Casi nunca", "score": 0}
+    ]
+  },
+  {
+    "id": "trust_consistency",
+    "topic": "confianza",
+    "text": "¿Sientes que sus acciones coinciden con lo que dice?",
+    "options": [
+      {"id": 0, "label": "Siempre", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "Rara vez", "score": 0}
+    ]
+  },
+  {
+    "id": "support_hard_times",
+    "topic": "apoyo",
+    "text": "Si tuvieras una emergencia a las 3 a.m., ¿es esta la primera persona a la que llamarías?",
+    "options": [
+      {"id": 0, "label": "Definitivamente sí", "score": 2},
+      {"id": 1, "label": "Lo dudaría un poco", "score": 1},
+      {"id": 2, "label": "Probablemente no", "score": 0}
+    ]
+  },
+  {
+    "id": "respect_boundaries",
+    "topic": "respeto",
+    "text": "Cuando dices 'no' a algo, ¿esta persona respeta tu decisión sin insistir?",
+    "options": [
+      {"id": 0, "label": "Sí, lo respeta", "score": 2},
+      {"id": 1, "label": "Insiste un poco", "score": 1},
+      {"id": 2, "label": "Me hace sentir culpable", "score": 0}
+    ]
+  },
+  {
+    "id": "fun_shared_humor",
+    "topic": "diversion",
+    "text": "¿Tienen 'chistes internos' o un sentido del humor similar?",
+    "options": [
+      {"id": 0, "label": "Muchos", "score": 2},
+      {"id": 1, "label": "Algunos", "score": 1},
+      {"id": 2, "label": "No realmente", "score": 0}
+    ]
+  },
+  {
+    "id": "conflict_resolution_speed",
+    "topic": "comunicacion_de_conflictos",
+    "text": "Después de una discusión, ¿cuánto tiempo tardan en volver a estar bien?",
+    "options": [
+      {"id": 0, "label": "Hablamos y sanamos rápido", "score": 2},
+      {"id": 1, "label": "Pasamos horas o días sin hablar", "score": 1},
+      {"id": 2, "label": "Los temas nunca se cierran", "score": 0}
+    ]
+  },
+  {
+    "id": "future_vision",
+    "topic": "vision_de_futuro",
+    "text": "¿Sientes que tus metas a largo plazo coinciden con las de esta persona?",
+    "options": [
+      {"id": 0, "label": "Totalmente", "score": 2},
+      {"id": 1, "label": "En algunas cosas", "score": 1},
+      {"id": 2, "label": "Para nada", "score": 0}
+    ]
+  },
+  {
+    "id": "autonomy",
+    "topic": "autonomia",
+    "text": "¿Sientes que esta persona respeta tu espacio personal y tu independencia?",
+    "options": [
+      {"id": 0, "label": "Sí, siempre", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "Siento que me asfixia", "score": 0}
+    ]
+  },
+  {
+    "id": "admiration",
+    "topic": "admiracion",
+    "text": "¿Hay cualidades en esta persona que realmente admiras?",
+    "options": [
+      {"id": 0, "label": "Muchas", "score": 2},
+      {"id": 1, "label": "Algunas", "score": 1},
+      {"id": 2, "label": "No realmente", "score": 0}
+    ]
+  },
+  {
+    "id": "physical_affection",
+    "topic": "afecto_fisico",
+    "text": "¿Te sientes satisfecho con la conexión física y demostraciones de afecto?",
+    "options": [
+      {"id": 0, "label": "Sí, mucho", "score": 2},
+      {"id": 1, "label": "Podría ser mejor", "score": 1},
+      {"id": 2, "label": "No me siento cómodo/a", "score": 0}
+    ]
+  },
+  {
+    "id": "financial_compatibility",
+    "topic": "compatibilidad_financiera",
+    "text": "¿Tienen una visión similar sobre cómo manejar el dinero o los gastos?",
+    "options": [
+      {"id": 0, "label": "Sí, estamos alineados", "score": 2},
+      {"id": 1, "label": "Tenemos algunas diferencias", "score": 1},
+      {"id": 2, "label": "Chocamos mucho en esto", "score": 0}
+    ]
+  },
+  {
+    "id": "stress_handling",
+    "topic": "manejo_del_estres",
+    "text": "¿Cómo reacciona esta persona cuando estás pasando por un momento difícil?",
+    "options": [
+      {"id": 0, "label": "Me apoya y me calma", "score": 2},
+      {"id": 1, "label": "No sabe muy bien qué hacer", "score": 1},
+      {"id": 2, "label": "Se aleja o se molesta", "score": 0}
+    ]
+  },
+  {
+    "id": "social_integration",
+    "topic": "entorno_social",
+    "text": "¿Te sientes a gusto cuando compartes tiempo con su círculo de amigos o familia?",
+    "options": [
+      {"id": 0, "label": "Sí, me integran bien", "score": 2},
+      {"id": 1, "label": "A veces es incómodo", "score": 1},
+      {"id": 2, "label": "No me gusta su entorno", "score": 0}
+    ]
+  },
+  {
+    "id": "growth_support",
+    "topic": "crecimiento_personal",
+    "text": "¿Sientes que esta persona te impulsa a ser una mejor versión de ti mismo/a?",
+    "options": [
+      {"id": 0, "label": "Sí, me motiva", "score": 2},
+      {"id": 1, "label": "Es indiferente", "score": 1},
+      {"id": 2, "label": "Siento que me frena", "score": 0}
+    ]
+  },
+  {
+    "id": "equality",
+    "topic": "equidad",
+    "text": "¿Sientes que las responsabilidades y el esfuerzo en la relación son equitativos?",
+    "options": [
+      {"id": 0, "label": "Sí, es mutuo", "score": 2},
+      {"id": 1, "label": "A veces cargo con más", "score": 1},
+      {"id": 2, "label": "Es muy desigual", "score": 0}
+    ]
+  },
+  {
+    "id": "forgiveness",
+    "topic": "capacidad_de_perdon",
+    "text": "¿Sientes que pueden superar errores del pasado sin reproches constantes?",
+    "options": [
+      {"id": 0, "label": "Sí, logramos sanar", "score": 2},
+      {"id": 1, "label": "Cuesta pero lo intentamos", "score": 1},
+      {"id": 2, "label": "Siempre salen a relucir", "score": 0}
+    ]
+  },
+  {
+    "id": "values_priority",
+    "topic": "valores",
+    "text": "Cuando deben tomar una decisión importante, ¿sientes que sus prioridades están alineadas?",
+    "options": [
+      {"id": 0, "label": "Casi siempre", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "Rara vez", "score": 0}
+    ]
+  },
+  {
+    "id": "honesty_transparency",
+    "topic": "honestidad",
+    "text": "¿Sientes que esta persona te cuenta las cosas como son, incluso si son incómodas?",
+    "options": [
+      {"id": 0, "label": "Sí, es transparente", "score": 2},
+      {"id": 1, "label": "Oculta cosas para evitar líos", "score": 1},
+      {"id": 2, "label": "Siento que me miente", "score": 0}
+    ]
+  },
+  {
+    "id": "comfort_vulnerability",
+    "topic": "comodidad",
+    "text": "¿Te resulta fácil llorar o mostrarte vulnerable frente a esta persona?",
+    "options": [
+      {"id": 0, "label": "Totalmente", "score": 2},
+      {"id": 1, "label": "Me cuesta un poco", "score": 1},
+      {"id": 2, "label": "Prefiero no hacerlo", "score": 0}
+    ]
+  },
+  {
+    "id": "interests_curiosity",
+    "topic": "intereses",
+    "text": "¿Esta persona muestra interés genuino por aprender sobre tus hobbies, aunque no los comparta?",
+    "options": [
+      {"id": 0, "label": "Mucho interés", "score": 2},
+      {"id": 1, "label": "Escucha por cortesía", "score": 1},
+      {"id": 2, "label": "No le importa", "score": 0}
+    ]
+  },
+  {
+    "id": "empathy_validation",
+    "topic": "empatia",
+    "text": "Cuando estás triste, ¿esta persona valida lo que sientes en lugar de decirte que exageras?",
+    "options": [
+      {"id": 0, "label": "Me hace sentir escuchado", "score": 2},
+      {"id": 1, "label": "A veces me minimiza", "score": 1},
+      {"id": 2, "label": "Siempre me invalida", "score": 0}
+    ]
+  },
+  {
+    "id": "commitment_reliability",
+    "topic": "compromiso",
+    "text": "Si esta persona hace una promesa o un plan contigo, ¿puedes dar por hecho que lo cumplirá?",
+    "options": [
+      {"id": 0, "label": "Siempre cumple", "score": 2},
+      {"id": 1, "label": "A veces cancela", "score": 1},
+      {"id": 2, "label": "Es muy poco confiable", "score": 0}
+    ]
+  },
+  {
+    "id": "emotional_safety",
+    "topic": "seguridad_emocional",
+    "text": "¿Sientes la tranquilidad de que esta persona no te dejará ante el primer problema?",
+    "options": [
+      {"id": 0, "label": "Me siento muy seguro/a", "score": 2},
+      {"id": 1, "label": "Tengo algunas dudas", "score": 1},
+      {"id": 2, "label": "Siento mucha inseguridad", "score": 0}
+    ]
+  },
+  {
+    "id": "decision_making",
+    "topic": "toma_de_decisiones",
+    "text": "¿Sientes que esta persona toma en cuenta tu opinión antes de decidir algo que afecta a ambos?",
+    "options": [
+      {"id": 0, "label": "Siempre me consulta", "score": 2},
+      {"id": 1, "label": "A veces decide solo/a", "score": 1},
+      {"id": 2, "label": "Nunca me toma en cuenta", "score": 0}
+    ]
+  },
+  {
+    "id": "social_pride",
+    "topic": "entorno_social",
+    "text": "¿Esta persona te presenta con orgullo ante sus amigos o familiares?",
+    "options": [
+      {"id": 0, "label": "Sí, con mucho orgullo", "score": 2},
+      {"id": 1, "label": "A veces parece dudar", "score": 1},
+      {"id": 2, "label": "Siento que me oculta", "score": 0}
+    ]
+  },
+  {
+    "id": "fun_stress_relief",
+    "topic": "diversion",
+    "text": "¿Estar con esta persona te ayuda a desconectarte y relajarte de las tensiones del día?",
+    "options": [
+      {"id": 0, "label": "Es mi lugar seguro", "score": 2},
+      {"id": 1, "label": "Depende del día", "score": 1},
+      {"id": 2, "label": "Me genera más tensión", "score": 0}
+    ]
+  },
+  {
+    "id": "comm_conflict_style",
+    "topic": "comunicacion_de_conflictos",
+    "text": "Durante una discusión, ¿esta persona mantiene la calma y busca soluciones en lugar de atacar?",
+    "options": [
+      {"id": 0, "label": "Casi siempre", "score": 2},
+      {"id": 1, "label": "A veces", "score": 1},
+      {"id": 2, "label": "Suele ser agresivo/a o se cierra", "score": 0}
+    ]
+  },
+  {
+    "id": "trust_privacy",
+    "topic": "confianza",
+    "text": "¿Sientes que esta persona respeta tu privacidad (celular, correos, diario) sin necesidad de controlarte?",
+    "options": [
+      {"id": 0, "label": "Sí, confía en mí", "score": 2},
+      {"id": 1, "label": "A veces hace preguntas intrusivas", "score": 1},
+      {"id": 2, "label": "Siento que me vigila o me controla", "score": 0}
+    ]
+  },
+  {
+    "id": "support_growth",
+    "topic": "apoyo",
+    "text": "Cuando tienes un nuevo proyecto o meta, ¿esta persona te anima a perseguirlo?",
+    "options": [
+      {"id": 0, "label": "Me apoya totalmente", "score": 2},
+      {"id": 1, "label": "Es indiferente", "score": 1},
+      {"id": 2, "label": "Me desanima o me pone obstáculos", "score": 0}
+    ]
+  },
+  {
+    "id": "respect_opinions",
+    "topic": "respeto",
+    "text": "Incluso cuando no están de acuerdo, ¿sientes que valora tu punto de vista?",
+    "options": [
+      {"id": 0, "label": "Sí, respeta mi opinión", "score": 2},
+      {"id": 1, "label": "A veces me ignora", "score": 1},
+      {"id": 2, "label": "Se burla o menosprecia lo que pienso", "score": 0}
+    ]
+  },
+  {
+    "id": "fun_quality_time",
+    "topic": "diversion",
+    "text": "¿Suelen planear actividades nuevas o emocionantes para salir de la rutina?",
+    "options": [
+      {"id": 0, "label": "Frecuentemente", "score": 2},
+      {"id": 1, "label": "Muy de vez en cuando", "score": 1},
+      {"id": 2, "label": "Nunca, siempre hacemos lo mismo", "score": 0}
+    ]
+  },
+  {
+    "id": "values_lifestyle",
+    "topic": "valores",
+    "text": "¿Coinciden en sus posturas sobre temas fundamentales (familia, religión, ética)?",
+    "options": [
+      {"id": 0, "label": "Estamos muy alineados", "score": 2},
+      {"id": 1, "label": "Tenemos diferencias manejables", "score": 1},
+      {"id": 2, "label": "Nuestros valores chocan constantemente", "score": 0}
+    ]
+  },
+  {
+    "id": "honesty_past",
+    "topic": "honestidad",
+    "text": "¿Sientes que esta persona ha sido sincera sobre su pasado y quién es realmente?",
+    "options": [
+      {"id": 0, "label": "Sí, confío en su sinceridad", "score": 2},
+      {"id": 1, "label": "He descubierto algunas omisiones", "score": 1},
+      {"id": 2, "label": "Siento que oculta muchas cosas", "score": 0}
+    ]
+  },
+  {
+    "id": "empathy_effort",
+    "topic": "empatia",
+    "text": "¿Esta persona hace un esfuerzo consciente por ponerse en tu lugar cuando estás pasando un mal día?",
+    "options": [
+      {"id": 0, "label": "Sí, es muy empático/a", "score": 2},
+      {"id": 1, "label": "A veces le cuesta entender", "score": 1},
+      {"id": 2, "label": "Solo piensa en sus propios problemas", "score": 0}
+    ]
+  },
+  {
+    "id": "commitment_future",
+    "topic": "compromiso",
+    "text": "¿Habla esta persona de planes a futuro (viajes, mudanza, proyectos) incluyéndote a ti?",
+    "options": [
+      {"id": 0, "label": "Sí, me incluye siempre", "score": 2},
+      {"id": 1, "label": "A veces, pero de forma vaga", "score": 1},
+      {"id": 2, "label": "Evita hablar del futuro", "score": 0}
+    ]
+  },
+  {
+    "id": "comfort_physical_presence",
+    "topic": "comodidad",
+    "text": "¿Te sientes en paz y relajado/a simplemente estando en la misma habitación con esa persona, incluso en silencio?",
+    "options": [
+      {"id": 0, "label": "Sí, es una paz total", "score": 2},
+      {"id": 1, "label": "A veces el silencio es incómodo", "score": 1},
+      {"id": 2, "label": "Me siento tenso/a o alerta", "score": 0}
     ]
   }
 ]

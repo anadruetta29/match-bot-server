@@ -1,5 +1,5 @@
 from typing import List
-from app.domain.models.answer import Answer
+from app.domain.entities.answer import Answer
 
 class Score:
     def __init__(self, answers: List[Answer]):

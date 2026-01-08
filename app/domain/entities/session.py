@@ -1,6 +1,6 @@
 from typing import List, Optional
-from app.domain.models.answer import Answer
-from app.domain.models.score import Score
+from app.domain.entities.answer import Answer
+from app.domain.entities.score import Score
 
 class Session:
     def __init__(
@@ -16,8 +16,12 @@ class Session:
         self.finished = finished
 
     def add_answer(self, answer: Answer):
+        if self.finished:
+            raise RuntimeError("Cannot add answers to a finished session")
         self.answers.append(answer)
 
+    def finish(self):
+        self.finished = True
+
     def get_score(self) -> Score:
-        from app.domain.models.score import Score
         return Score(self.answers)
